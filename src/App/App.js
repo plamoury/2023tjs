@@ -14,6 +14,7 @@ function App() {
       <hr/>
       <Button>ClickMe<br/>please</Button>
       <Button><img src="/img/deadicon.png" alt='sdfsdfsdf'/></Button>
+      <Button children="toto"/>
     </div>
   );
 }
