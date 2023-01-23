@@ -4,8 +4,9 @@ import React from 'react'
  * simple button
  * @returns react component structure
  */
-const Button = ()=> {
-    return <button className='Button'>BenjaminB</button>
+const Button = (props)=> {
+    console.log(props);
+    return <button className='Button'>{props.children}</button>
 }
 
 //function Button() {
