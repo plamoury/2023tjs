@@ -4,9 +4,9 @@ import style from "./Button.module.css";
 import { type } from 'os';
 
 interface IButtonProps{
-    onButtonClick:Function
+    onButtonClick?:Function
     myStyle?:{}
-    myType:"submit"|"reset"|"button"
+    myType?:"submit"|"reset"|"button"
     bgColor?:string
     children:string|React.ReactElement|Array<React.ReactElement|string>
 }
@@ -14,7 +14,7 @@ interface IButtonProps{
  * simple button
  * @returns react component structure
  */
-const Button = (props:IButtonProps) => {
+const Button: React.FC<IButtonProps> = (props:IButtonProps) => {
     // valeur etatique pour function
     const [isClicked, setIsClicked] = useState(false);
     //hook d'effet de cycle de vie d'une valeur (et pas de composant)
@@ -29,7 +29,8 @@ const Button = (props:IButtonProps) => {
         onClick={(arg) => {
             setIsClicked(true);
             console.log(arg);
-            props.onButtonClick();
+            if (undefined != props.onButtonClick) {
+            props.onButtonClick();}
         }}
         type={props.myType}
         >
@@ -38,11 +39,11 @@ const Button = (props:IButtonProps) => {
 
 }
 Button.propTypes = {
-    onButtonClick: PropTypes.func.isRequired,
+    onButtonClick: PropTypes.func,
     children: PropTypes.any.isRequired,
     myStyle: PropTypes.object,
     bgColor: PropTypes.string,
-    myType: PropTypes.oneOf(['submit','reset','button']).isRequired
+    myType: PropTypes.oneOf(['submit','reset','button'])
 };
 Button.defaultProps = {
     onButtonClick: (arg:string) => { console.log(arg); },
