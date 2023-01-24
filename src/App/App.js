@@ -22,7 +22,7 @@ class App extends React.PureComponent {
           this.setState({ counter: this.state.counter - 1 });
           console.log('Render => ', this.state.counter);
         }}>Click-1</Button>
-        <Button>Click+1</Button>
+        <Button >Click+1</Button>
       </div>
     );
   }

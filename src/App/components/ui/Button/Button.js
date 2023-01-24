@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import style from "./Button.module.css"
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import style from "./Button.module.css";
 
 /**
  * simple button
@@ -23,7 +24,16 @@ const Button = (props) => {
         }}>
         {props.children}
     </button>
+
 }
+
+Button.propTypes = {
+    onButtonClick: PropTypes.func.isRequired,
+    children: PropTypes.any.isRequired,
+};
+Button.defaultProps = {
+    onButtonClick: () => { alert('pas daction'); }
+};
 
 //function Button() {
 //    return <button className='Button'>BenjaminB</button>
