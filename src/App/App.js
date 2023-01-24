@@ -7,6 +7,10 @@ class App extends React.PureComponent {
     super(props);
     this.state = { counter: 0 }
   }
+  componentDidUpdate() {
+    console.log('Apres changement effectif du state ', this.state.counter);
+    console.log(arguments);
+  }
   render() {
     return (
       <div className="App">
@@ -16,9 +20,9 @@ class App extends React.PureComponent {
           // le setState ne fait qu'un remplacement d'objet Asynchrone
           // pas de garantie sur le rendu pour etre effectif
           this.setState({ counter: this.state.counter - 1 });
-          console.log(this.state.counter);
-        }}>Click+1</Button>
-        <Button>Click-1</Button>
+          console.log('Render => ', this.state.counter);
+        }}>Click-1</Button>
+        <Button>Click+1</Button>
       </div>
     );
   }
