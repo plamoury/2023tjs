@@ -3,18 +3,20 @@ import Button from './components/ui/Button/Button';
 import './App.css';
 
 class App extends React.PureComponent {
-  counter = 0;
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 }
+  }
   render() {
     return (
       <div className="App">
-        Voici le nb de click : {this.counter}
+        Voici le nb de click : {this.state.counter}
         <hr />
         <Button onButtonClick={() => {
-          this.counter--;
-          console.log(this.counter);
-          // mauvais usage parce que synchrone
-          // à eviter
-          this.forceUpdate();
+          // le setState ne fait qu'un remplacement d'objet Asynchrone
+          // pas de garantie sur le rendu pour etre effectif
+          this.setState({ counter: this.state.counter - 1 });
+          console.log(this.state.counter);
         }}>Click+1</Button>
         <Button>Click-1</Button>
       </div>
