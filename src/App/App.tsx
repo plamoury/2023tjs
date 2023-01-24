@@ -1,11 +1,19 @@
 import React from 'react';
-import Button from './components/ui/Button/Button';
+import Button from './components/ui/Buttonts/Button';
 import './App.css';
 
-class App extends React.PureComponent {
-  constructor(props) {
+interface IAppState{
+  counter:number
+  // une constante ou plutot une enum de valeur possible
+  // par ex un type limité possible pour un bouton cancel|valid
+  uneValeur:"hello"
+}
+interface IAppProps{}
+
+class App extends React.PureComponent<IAppProps,IAppState> {
+  constructor(props:IAppProps) {
     super(props);
-    this.state = { counter: 0 }
+    this.state = { counter: 0,uneValeur:"hello" }
   }
   componentDidUpdate() {
     console.log('Apres changement effectif du state ', this.state.counter);
@@ -22,12 +30,17 @@ class App extends React.PureComponent {
             // le setState ne fait qu'un remplacement d'objet Asynchrone
             // pas de garantie sur le rendu pour etre effectif
             this.setState({ counter: this.state.counter - 1 });
-            console.log('Render => ', this.state.counter);
-          }}>Click-1</Button>
-        <Button myStyle={{ backgroundColor: 'black', color: 'yellow' }}>
+          }}>
+            Click-1
+        </Button>
+        <Button myType="submit" myStyle={{ backgroundColor: 'black', color: 'yellow' }}
+        onButtonClick={()=>{
+          this.setState({counter: this.state.counter + 1});
+        }}>
           Click+1
         </Button>
-        <Button>New</Button>
+        <Button myType="submit"
+        children={"newOne"}/>
       </div>
     );
   }
