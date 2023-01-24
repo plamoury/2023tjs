@@ -16,13 +16,18 @@ class App extends React.PureComponent {
       <div className="App">
         Voici le nb de click : {this.state.counter}
         <hr />
-        <Button onButtonClick={() => {
-          // le setState ne fait qu'un remplacement d'objet Asynchrone
-          // pas de garantie sur le rendu pour etre effectif
-          this.setState({ counter: this.state.counter - 1 });
-          console.log('Render => ', this.state.counter);
-        }}>Click-1</Button>
-        <Button >Click+1</Button>
+        <Button
+          bgColor="tomato"
+          onButtonClick={() => {
+            // le setState ne fait qu'un remplacement d'objet Asynchrone
+            // pas de garantie sur le rendu pour etre effectif
+            this.setState({ counter: this.state.counter - 1 });
+            console.log('Render => ', this.state.counter);
+          }}>Click-1</Button>
+        <Button myStyle={{ backgroundColor: 'black', color: 'yellow' }}>
+          Click+1
+        </Button>
+        <Button>New</Button>
       </div>
     );
   }

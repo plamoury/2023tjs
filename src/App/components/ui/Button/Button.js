@@ -17,6 +17,7 @@ const Button = (props) => {
     console.log(props);
     return <button className={
         `${style.Button}${isClicked ? ' ' + style.clicked : ''}`}
+        style={{ backgroundColor: props.bgColor, ...props.myStyle }}
         onClick={(arg) => {
             setIsClicked(true);
             console.log(arg);
@@ -30,9 +31,10 @@ const Button = (props) => {
 Button.propTypes = {
     onButtonClick: PropTypes.func.isRequired,
     children: PropTypes.any.isRequired,
+    myStyle: PropTypes.object,
 };
 Button.defaultProps = {
-    onButtonClick: () => { alert('pas daction'); }
+    onButtonClick: (arg) => { console.log(arg); }
 };
 
 //function Button() {
