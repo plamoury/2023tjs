@@ -9,6 +9,7 @@ import style from "./MemeForm.module.css";
 interface IMemeFormProps {
   meme: MemeInterface;
   onValueChange: Function;
+  images: Array<ImageInterface>;
 }
 
 const MemeForm: React.FC<IMemeFormProps> = (props) => {
@@ -33,8 +34,23 @@ const MemeForm: React.FC<IMemeFormProps> = (props) => {
         />
         <hr />
         <h2>Image</h2>
-        <select>
+        <select
+          onChange={(evt) => {
+            console.log(evt.target.value);
+            props.onValueChange({
+              ...props.meme,
+              imageId: Number(evt.target.value),
+            });
+          }}
+        >
           <option value="-1">Aucune</option>
+          {props.images.map((e, i) => {
+            return (
+              <option key={"img" + i} value={e.id}>
+                {e.name}
+              </option>
+            );
+          })}
         </select>
         <hr />
         <h2>text</h2>
