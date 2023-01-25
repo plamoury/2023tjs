@@ -6,7 +6,9 @@ import Header from "./components/ui/Header/Header";
 import MemeForm from "./components/feature/MemeForm/MemeForm";
 import FlexHLayout from "./components/layout/FlexHLayout/FlexHLayout";
 import { REST_ADR } from "./config/config";
-import { uneValeurASupprimerApresImplementation } from "./store/store";
+import { store, uneValeurASupprimerApresImplementation } from "./store/store";
+import Button from "./components/ui/Buttonts/Button";
+import { addImage } from "./store/listes";
 
 interface IAppState {
   meme: MemeInterface;
@@ -19,29 +21,36 @@ class App extends React.PureComponent<IAppProps, IAppState> {
     super(props);
     this.state = {
       meme: DummyMeme,
-      images: [
-        {
-          id: 0,
-          url: "shrek1.jpg",
-          w: 900,
-          h: 900,
-          name: "Shrek1",
-        },
-      ],
+      images: [],
     };
   }
   componentDidMount(): void {
-    console.log(uneValeurASupprimerApresImplementation);
+    /*    console.log(uneValeurASupprimerApresImplementation);
     fetch(`${REST_ADR}/images`)
       .then(
         (r) => r.json(),
         (r) => []
       )
       .then((ar) => this.setState({ images: ar }));
+      */
   }
   render() {
     return (
       <div className="App">
+        <Button
+          onButtonClick={() => {
+            store.dispatch(
+              addImage({
+                h: 1000,
+                w: 50,
+                url: "dfg.jpg",
+                id: 123,
+                name: "coucou",
+              })
+            );
+          }}
+          children={"addimg"}
+        />
         <Header />
         <FlexHLayout myStyle={{ height: "89vh" }}>
           <MemeSVGViewer

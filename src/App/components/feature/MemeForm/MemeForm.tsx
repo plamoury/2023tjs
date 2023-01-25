@@ -2,6 +2,7 @@ import { MemeInterface, ImageInterface } from "orsys-tjs-meme";
 import { number } from "prop-types";
 import { stringify } from "querystring";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import Button from "../../ui/Buttonts/Button";
 import style from "./MemeForm.module.css";
 
@@ -194,4 +195,12 @@ const MemeForm: React.FC<IMemeFormProps> = (props) => {
     </div>
   );
 };
-export default MemeForm;
+
+const mapDispatch2Props = (dispatch: Function) => {
+  return {};
+};
+const mapState2Props = (state: any, ownprops: any) => {
+  return { ...ownprops, images: state.listes.images };
+};
+
+export default connect(mapState2Props, mapDispatch2Props)(MemeForm);

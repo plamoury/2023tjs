@@ -7,7 +7,7 @@ export const store=configureStore({
     reducer:combineReducers({listes:listeReducer}),
     devTools: true,
 });
-s
+
 console.log(store.getState);
 store.dispatch(addImage({h:1000,w:50,url:'dfg.jpg',id:123, name:'coucou'}))
 console.log(store.getState());
