@@ -6,6 +6,7 @@ import Header from "./components/ui/Header/Header";
 import MemeForm from "./components/feature/MemeForm/MemeForm";
 import FlexHLayout from "./components/layout/FlexHLayout/FlexHLayout";
 import { REST_ADR } from "./config/config";
+import { uneValeurASupprimerApresImplementation } from "./store/store";
 
 interface IAppState {
   meme: MemeInterface;
@@ -30,6 +31,7 @@ class App extends React.PureComponent<IAppProps, IAppState> {
     };
   }
   componentDidMount(): void {
+    console.log(uneValeurASupprimerApresImplementation);
     fetch(`${REST_ADR}/images`)
       .then(
         (r) => r.json(),
