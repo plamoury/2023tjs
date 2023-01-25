@@ -3,6 +3,7 @@ import { number } from "prop-types";
 import { stringify } from "querystring";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { updateCurrent } from "../../../store/current";
 import Button from "../../ui/Buttonts/Button";
 import style from "./MemeForm.module.css";
 
@@ -197,7 +198,11 @@ const MemeForm: React.FC<IMemeFormProps> = (props) => {
 };
 
 const mapDispatch2Props = (dispatch: Function) => {
-  return {};
+  return {
+    onMemeValueChange: (newMeme: MemeInterface) => {
+      dispatch(updateCurrent(newMeme));
+    },
+  };
 };
 const mapState2Props = (state: any, ownprops: any) => {
   return { ...ownprops, images: state.listes.images };
